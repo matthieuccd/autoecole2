@@ -1,8 +1,31 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Syne', system-ui, sans-serif;
+  
+  /* Colors */
+  --color-navy: #0d1b2a;
+  --color-navy-2: #1a2e45;
+  --color-orange: #f05a28;
+  --color-orange-light: #ff7043;
+  --color-cream: #faf8f4;
+  --color-cream-2: #f4f2ee;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #555550;
+  --color-footer: #080f17;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; color: #1a1a1a; }
+body { 
+  font-family: var(--font-sans); 
+  -webkit-font-smoothing: antialiased; 
+  color: var(--color-text);
+  background-color: var(--color-cream);
+}
+
+h1, h2, h3 { font-family: var(--font-heading); }
 h1 { font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
 h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
 h3 { font-size: 1.2rem; font-weight: 700; }
@@ -10,9 +33,26 @@ img { display: block; width: 100%; }
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 
+/* Animations */
 @keyframes wa-pulse {
   0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,0.35); }
   50%       { box-shadow: 0 4px 32px rgba(37,211,102,0.6); }
 }
 .animate-wa-pulse { animation: wa-pulse 2.5s ease-in-out infinite; }
-.font-syne { font-family: 'Syne', sans-serif; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Font utility */
+.font-syne { font-family: var(--font-heading); }

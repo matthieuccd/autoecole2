@@ -16,27 +16,44 @@ const reviews = [
 export default function Avis() {
   return (
     <>
+      {/* Header */}
       <section className="pt-[120px] pb-16 bg-navy">
         <div className="max-w-6xl mx-auto px-6">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange bg-orange/15 px-4 py-1.5 rounded-full mb-4">Avis élèves</span>
-          <h1 className="font-syne font-black text-white mb-4">Ils ont eu leur permis<br /><span className="text-orange italic">avec nous</span></h1>
-          <p className="text-white/65 font-light text-lg max-w-lg">Plus de 200 avis vérifiés. Note moyenne 4.9/5.</p>
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange bg-orange/15 px-4 py-1.5 rounded-full mb-4">
+            Avis élèves
+          </span>
+          <h1 className="font-syne font-[800] text-white mb-4">
+            Ils ont eu leur permis<br />
+            <span className="text-orange italic">avec nous</span>
+          </h1>
+          <p className="text-white/65 font-light text-lg max-w-lg">
+            Plus de 200 avis vérifiés. Note moyenne 4.9/5.
+          </p>
         </div>
       </section>
 
-      <section className="py-16 bg-stone-50">
+      {/* Stats Summary */}
+      <section className="py-16 bg-cream-2">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center gap-12 bg-white rounded-2xl p-10 border border-stone-100">
+          <div className="flex flex-col sm:flex-row items-center gap-12 bg-white rounded-2xl p-10 border border-stone-200">
             <div className="text-center">
-              <div className="font-syne font-black text-navy text-7xl leading-none">4.9</div>
+              <div className="font-syne font-[800] text-navy text-7xl leading-none">4.9</div>
               <div className="text-orange text-xl tracking-widest my-2">★★★★★</div>
-              <div className="text-sm text-stone-400">Basé sur 214 avis</div>
+              <div className="text-sm text-text-secondary">Basé sur 214 avis</div>
             </div>
             <div className="flex-1 w-full space-y-2.5">
-              {[["5 ★","89%"],["4 ★","8%"],["3 ★","2%"],["2 ★","1%"],["1 ★","0%"]].map(([label, pct]) => (
-                <div key={label} className="flex items-center gap-3 text-sm text-stone-500">
+              {[
+                ["5 ★", "89%"],
+                ["4 ★", "8%"],
+                ["3 ★", "2%"],
+                ["2 ★", "1%"],
+                ["1 ★", "0%"]
+              ].map(([label, pct]) => (
+                <div key={label} className="flex items-center gap-3 text-sm text-text-secondary">
                   <span className="w-8">{label}</span>
-                  <div className="flex-1 h-2 bg-stone-100 rounded-full overflow-hidden"><div className="h-full bg-orange rounded-full" style={{ width: pct }} /></div>
+                  <div className="flex-1 h-2 bg-stone-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-orange rounded-full" style={{ width: pct }} />
+                  </div>
                   <span className="w-8 text-right">{pct}</span>
                 </div>
               ))}
@@ -45,17 +62,41 @@ export default function Avis() {
         </div>
       </section>
 
-      <section className="py-16">
+      {/* Reviews Grid */}
+      <section className="py-16 bg-cream">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-5">
           {reviews.map(r => (
-            <div key={r.name} className={`rounded-2xl p-8 flex flex-col gap-4 border ${r.featured ? "bg-navy border-navy" : "bg-white border-stone-200"}`}>
-              <div className="text-orange tracking-widest">{"★".repeat(r.stars)}{"☆".repeat(5-r.stars)}</div>
-              <p className={`text-sm italic leading-relaxed flex-1 ${r.featured ? "text-white/85" : "text-stone-500"}`}>"{r.text}"</p>
+            <div 
+              key={r.name} 
+              className={`rounded-2xl p-8 flex flex-col gap-4 border transition-all duration-[220ms] hover:-translate-y-1 hover:shadow-lg ${
+                r.featured 
+                  ? "bg-navy border-navy" 
+                  : "bg-white border-stone-200"
+              }`}
+            >
+              <div className="text-orange tracking-widest">
+                {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
+              </div>
+              <p className={`text-sm italic leading-relaxed flex-1 ${
+                r.featured ? "text-white/85" : "text-text-secondary"
+              }`}>
+                &quot;{r.text}&quot;
+              </p>
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-syne font-bold text-xs flex-shrink-0 ${r.featured ? "bg-white/15 text-white" : "bg-stone-100 text-navy"}`}>{r.i}</div>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-syne font-bold text-xs flex-shrink-0 ${
+                  r.featured 
+                    ? "bg-white/15 text-white" 
+                    : "bg-stone-100 text-navy"
+                }`}>
+                  {r.i}
+                </div>
                 <div>
-                  <div className={`font-semibold text-sm ${r.featured ? "text-white" : "text-navy"}`}>{r.name}</div>
-                  <div className={`text-xs ${r.featured ? "text-white/50" : "text-stone-400"}`}>{r.ctx}</div>
+                  <div className={`font-semibold text-sm ${r.featured ? "text-white" : "text-navy"}`}>
+                    {r.name}
+                  </div>
+                  <div className={`text-xs ${r.featured ? "text-white/50" : "text-stone-400"}`}>
+                    {r.ctx}
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,13 +104,28 @@ export default function Avis() {
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="py-20 bg-navy">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="font-syne font-bold text-white mb-4">Rejoignez nos élèves satisfaits</h2>
-          <p className="text-white/65 mb-8">Premier rendez-vous gratuit et sans engagement.</p>
+          <h2 className="font-syne font-bold text-white mb-4">
+            Rejoignez nos élèves satisfaits
+          </h2>
+          <p className="text-white/65 mb-8">
+            Premier rendez-vous gratuit et sans engagement.
+          </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Link href="/contact" className="bg-orange hover:bg-orange-light text-white font-syne font-bold px-8 py-4 rounded-xl transition-colors">Prendre rendez-vous</Link>
-            <a href={siteConfig.phoneHref} className="border border-white/30 hover:border-white text-white px-8 py-4 rounded-xl transition-colors">{siteConfig.phone}</a>
+            <Link 
+              href="/contact" 
+              className="bg-orange hover:bg-orange-light text-white font-syne font-bold px-8 py-4 rounded-xl transition-all duration-[220ms] hover:-translate-y-0.5"
+            >
+              Prendre rendez-vous
+            </Link>
+            <a 
+              href={siteConfig.phoneHref} 
+              className="border border-white/30 hover:border-white text-white px-8 py-4 rounded-xl transition-colors duration-[220ms]"
+            >
+              {siteConfig.phone}
+            </a>
           </div>
         </div>
       </section>
